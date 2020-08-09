@@ -15,10 +15,11 @@
         :name="list.name"
         :message="list.message"
         :date="list.date"
+        @del="messageDelete(key)"
       >
       </chat-list>
     </ul>
-    <chat-form v-on:sub="listAdd"></chat-form>
+    <chat-form @sub="messageAdd"></chat-form>
   </div>
 
 
