@@ -16,7 +16,7 @@ Vue.component('chat-list', {
 
 Vue.component('chat-form', {
   props: ['message', 'name'],
-  template: '<div>名前: <input v-model="name"> コメント:<textarea v-model="message"></textarea><button @click="onSubmit">送信</button></div>',
+  template: '<div>コメント:<textarea v-model="message"></textarea> 名前: <input v-model="name"> <button @click="onSubmit">送信</button></div>',
   data: function() {
     return {
       message: '',
@@ -44,7 +44,7 @@ var chat = new Vue({
   methods: {
     listen: function(){
       var vue = this;
-      firebase.database().ref('chat').on('value', function(chat) {
+      firebase.database().ref('chat').limitToLast(20).on('value', function(chat) {
         vue.lists = chat.val();
       });
     },
@@ -57,8 +57,9 @@ var chat = new Vue({
       })
     },
     messageDelete: function(key){
-      console.log(key);
-      firebase.database().ref('chat').child(key).remove();
+      if(confirm('削除してもよろしいですか？')){
+        firebase.database().ref('chat').child(key).remove();
+      }
     }
   }
 })
