@@ -40,7 +40,6 @@ var chat = new Vue({
   },
   created: function(){
     this.listen();
-    this.scrollBottom();
   },
   methods: {
     scrollBottom: function(){
@@ -66,7 +65,6 @@ var chat = new Vue({
     messageDelete: function(key){
       if(confirm('削除してもよろしいですか？')){
         firebase.database().ref('chat').child(key).remove();
-        this.scrollBottom()
       }
     }
   }
