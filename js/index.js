@@ -1,12 +1,12 @@
 Vue.config.devtools = true;     // Vue Devtoolsのタブ表示されないため追加
 
 Vue.component('chat-title', {
-  template: '<h1>VueChat</h1>',
+  template: '<h1 class="title">VueChat</h1>',
 })
 
 Vue.component('chat-list', {
   props: ['name', 'message', 'date', 'key'],
-  template: '<li> {{ message }} {{ name }} {{ date }} <button @click="onDelete(key)">削除</button></li>',
+  template: '<li>{{ name }} {{ message }} {{ date }} <button @click="onDelete(key)">削除</button></li>',
   methods: {
     onDelete: function(key){
       this.$emit('del', key)
@@ -16,7 +16,7 @@ Vue.component('chat-list', {
 
 Vue.component('chat-form', {
   props: ['message', 'name'],
-  template: '<div>コメント:<textarea v-model="message"></textarea> 名前: <input v-model="name"> <button @click="onSubmit">送信</button></div>',
+  template: '<div class="input"><input v-model="name" class="name" placeholder="名前..."><input v-model="message" class="message" placeholder="メッセージ..."><button @click="onSubmit" class="sendBtn">送信</button></div>',
   data: function() {
     return {
       message: '',
@@ -40,8 +40,14 @@ var chat = new Vue({
   },
   created: function(){
     this.listen();
+    this.scrollBottom();
   },
   methods: {
+    scrollBottom: function(){
+      this.$nextTick(function() {
+        window.scrollTo(0, document.body.clientHeight)
+      })
+    },
     listen: function(){
       var vue = this;
       firebase.database().ref('chat').limitToLast(20).on('value', function(chat) {
@@ -54,11 +60,13 @@ var chat = new Vue({
         name: name,
         message: message,
         date: nowDate.getMonth() + 1 + '/' + nowDate.getDate() + ' ' + nowDate.getHours().toString().padStart(2, '0') + ':' + nowDate.getMinutes().toString().padStart(2, '0')
-      })
+      });
+      this.scrollBottom();
     },
     messageDelete: function(key){
       if(confirm('削除してもよろしいですか？')){
         firebase.database().ref('chat').child(key).remove();
+        this.scrollBottom()
       }
     }
   }

@@ -4,24 +4,30 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VueChat</title>
+  <link href="./css/ress.css" rel="stylesheet">
   <link href="./css/index.css" rel="stylesheet">
 </head>
 <body>
   <div id="chat">
-    <chat-title></chat-title>
-    <ul>
-      <chat-list v-for="(list, key) in lists"
-        :key="key"
-        :name="list.name"
-        :message="list.message"
-        :date="list.date"
-        @del="messageDelete(key)"
-      >
-      </chat-list>
-    </ul>
-    <chat-form @sub="messageAdd"></chat-form>
+    <header>
+      <chat-title></chat-title>
+    </header>
+    <main>
+      <ul>
+        <chat-list v-for="(list, key) in lists"
+          :key="key"
+          :name="list.name"
+          :message="list.message"
+          :date="list.date"
+          @del="messageDelete(key)"
+        >
+        </chat-list>
+      </ul>
+    </main>
+    <footer>
+      <chat-form @sub="messageAdd"></chat-form>
+    </footer>
   </div>
-
 
   <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.17.2/firebase-app.js"></script>

@@ -1,0 +1,83 @@
+html {
+  display: flex;
+  font-size: 62.5%;
+}
+body {
+  width: 100%;
+}
+
+#chat {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #393232;
+
+  header{
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    background-color: #393232;
+    .title {
+      padding: .3em 0;
+      font-size: 2.5em;
+      text-align: center;
+      color: #BDBDBD;
+    }
+  }
+
+  main {
+    flex: 1 0 auto;
+    min-height: 1px;
+    ul {
+      width: 100%;
+      li {
+        list-style: none;
+        width:90%;
+        margin: 1em auto;
+        padding: 1em;
+        background-color: #4d4545;
+        border-radius: 10px;
+        font-size: 1.4rem;
+        color: #BDBDBD;
+      }
+    }
+  }
+
+  footer {
+    flex-shrink: 0;
+    position: sticky;
+    bottom: 0;
+    background-color: #212121;
+    div{
+      display: flex;
+      justify-content: space-between;
+      padding: 1em;
+      .message,
+      .name,
+      .sendBtn {
+        font-size: 1.4em;
+      }
+      .message,
+      .name {
+        padding: .5em;
+        color: #393232;
+        background-color: #BDBDBD;
+        border-radius: 10px;
+      }
+      .message {
+        width: 55%;
+      }
+      .name {
+        width: 22%;
+      }
+      .sendBtn {
+        width: 18%;
+        color: #BDBDBD;
+        background-color: #8d6262;
+        border-radius: 10px;
+      }
+    }
+  }
+
+}
