@@ -80,4 +80,22 @@ body {
     }
   }
 
+  .fade-enter-active,
+  .fade-leave-active,
+  .fade-move {
+    transition: all .8s;
+  }
+  .fade-enter {
+    transform: translateY(100%);
+  }
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
+  }
+  .fade-enter-to,
+  .fade-leave {
+    transform: translateX(0%);
+    opacity: 1
+  }
+
 }
