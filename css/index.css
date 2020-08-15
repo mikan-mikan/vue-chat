@@ -107,4 +107,28 @@ body {
   background-color: #8d6262;
   border-radius: 10px;
 }
+
+#chat .fade-enter-active,
+#chat .fade-leave-active,
+#chat .fade-move {
+  -webkit-transition: all .8s;
+  transition: all .8s;
+}
+
+#chat .fade-enter {
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+
+#chat .fade-enter,
+#chat .fade-leave-to {
+  opacity: 0;
+}
+
+#chat .fade-enter-to,
+#chat .fade-leave {
+  -webkit-transform: translateX(0%);
+          transform: translateX(0%);
+  opacity: 1;
+}
 /*# sourceMappingURL=index.css.map */

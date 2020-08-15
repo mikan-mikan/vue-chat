@@ -13,16 +13,16 @@
       <chat-title></chat-title>
     </header>
     <main>
-      <ul>
+      <transition-group tag="ul" name="fade">
         <chat-list v-for="(list, key) in lists"
-          :key="key"
-          :name="list.name"
-          :message="list.message"
-          :date="list.date"
-          @del="messageDelete(key)"
-        >
+        :key="key"
+        :name="list.name"
+        :message="list.message"
+        :date="list.date"
+        @del="messageDelete(key)"
+          >
         </chat-list>
-      </ul>
+      </transition-group>
     </main>
     <footer>
       <chat-form @sub="messageAdd"></chat-form>
@@ -40,7 +40,14 @@
   <script>
     // Your web app's Firebase configuration
     var firebaseConfig = {
-
+      apiKey: "AIzaSyBhFwrlKceCbgLjxiqxJPC90U9oYgXqGic",
+      authDomain: "vue-de-chat.firebaseapp.com",
+      databaseURL: "https://vue-de-chat.firebaseio.com",
+      projectId: "vue-de-chat",
+      storageBucket: "vue-de-chat.appspot.com",
+      messagingSenderId: "881845565405",
+      appId: "1:881845565405:web:71df7d4128194536ba2834",
+      measurementId: "G-C6B77S4TSD"
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);

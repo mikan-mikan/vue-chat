@@ -8,7 +8,7 @@ Vue.component('chat-list', {
   props: ['name', 'message', 'date', 'key'],
   template: '<li>{{ name }} {{ message }} {{ date }} <button @click="onDelete(key)">削除</button></li>',
   methods: {
-    onDelete: function(key){
+    onDelete(key){
       this.$emit('del', key)
     }
   }
@@ -24,7 +24,7 @@ Vue.component('chat-form', {
     }
   },
   methods: {
-    onSubmit: function(){
+    onSubmit(){
       if (!this.name || !this.message) { return };
       this.$emit('sub', this.name, this.message);
       this.message =  '';
@@ -42,18 +42,18 @@ var chat = new Vue({
     this.listen();
   },
   methods: {
-    scrollBottom: function(){
+    scrollBottom(){
       this.$nextTick(function() {
         window.scrollTo(0, document.body.clientHeight)
       })
     },
-    listen: function(){
+    listen(){
       var vue = this;
       firebase.database().ref('chat').limitToLast(20).on('value', function(chat) {
         vue.lists = chat.val();
       });
     },
-    messageAdd: function(name, message){
+    messageAdd(name, message){
       var nowDate = new Date();
       firebase.database().ref('chat').push({
         name: name,
@@ -62,7 +62,7 @@ var chat = new Vue({
       });
       this.scrollBottom();
     },
-    messageDelete: function(key){
+    messageDelete(key){
       if(confirm('削除してもよろしいですか？')){
         firebase.database().ref('chat').child(key).remove();
       }
